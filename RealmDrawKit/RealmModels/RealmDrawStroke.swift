@@ -11,6 +11,11 @@ import RealmSwift
 
 class RealmDrawStroke: Object {
     @objc dynamic var width = 2.0
-    @objc dynamic var color = "#000000"
+    @objc dynamic var colorString = "0x000000"
     let points = List<RealmDrawPoint>()
+
+    var color: UIColor {
+        set { self.colorString = newValue.toHexString }
+        get { return UIColor(hex: self.colorString) }
+    }
 }

@@ -11,11 +11,12 @@
 		2200706F1F5FF20400094731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 222A07351F5FF123003B9051 /* Main.storyboard */; };
 		220070701F5FF20600094731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 222A07321F5FF123003B9051 /* Assets.xcassets */; };
 		220070721F5FF21F00094731 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A07311F5FF123003B9051 /* AppDelegate.swift */; };
-		220070731F5FF22000094731 /* DrawCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A072E1F5FF123003B9051 /* DrawCanvas.swift */; };
+		220070731F5FF22000094731 /* DrawCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A072E1F5FF123003B9051 /* DrawCanvasView.swift */; };
 		220070741F5FF22200094731 /* DrawStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A072F1F5FF123003B9051 /* DrawStroke.swift */; };
 		2229C70B1F6027CD009682A7 /* RealmDrawStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2229C70A1F6027CD009682A7 /* RealmDrawStroke.swift */; };
 		2229C70D1F602B37009682A7 /* RealmDrawPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2229C70C1F602B37009682A7 /* RealmDrawPoint.swift */; };
 		2229C70F1F605659009682A7 /* DrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2229C70E1F605659009682A7 /* DrawViewController.swift */; };
+		2229C7111F606259009682A7 /* UIColor+HexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2229C7101F606259009682A7 /* UIColor+HexString.swift */; };
 		3FC1A61F68F9100F77049D1A /* Pods_RealmDrawKitExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7916E403899BDD344F34F9F /* Pods_RealmDrawKitExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,7 +25,8 @@
 		2229C70A1F6027CD009682A7 /* RealmDrawStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDrawStroke.swift; sourceTree = "<group>"; };
 		2229C70C1F602B37009682A7 /* RealmDrawPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDrawPoint.swift; sourceTree = "<group>"; };
 		2229C70E1F605659009682A7 /* DrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawViewController.swift; sourceTree = "<group>"; };
-		222A072E1F5FF123003B9051 /* DrawCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawCanvas.swift; sourceTree = "<group>"; };
+		2229C7101F606259009682A7 /* UIColor+HexString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HexString.swift"; sourceTree = "<group>"; };
+		222A072E1F5FF123003B9051 /* DrawCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawCanvasView.swift; sourceTree = "<group>"; };
 		222A072F1F5FF123003B9051 /* DrawStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawStroke.swift; sourceTree = "<group>"; };
 		222A07311F5FF123003B9051 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		222A07321F5FF123003B9051 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -63,9 +65,10 @@
 			isa = PBXGroup;
 			children = (
 				2229C7081F602704009682A7 /* RealmModels */,
-				222A072E1F5FF123003B9051 /* DrawCanvas.swift */,
+				222A072E1F5FF123003B9051 /* DrawCanvasView.swift */,
 				222A072F1F5FF123003B9051 /* DrawStroke.swift */,
 				2229C70E1F605659009682A7 /* DrawViewController.swift */,
+				2229C7101F606259009682A7 /* UIColor+HexString.swift */,
 			);
 			path = RealmDrawKit;
 			sourceTree = "<group>";
@@ -251,10 +254,11 @@
 			files = (
 				2229C70D1F602B37009682A7 /* RealmDrawPoint.swift in Sources */,
 				2229C70B1F6027CD009682A7 /* RealmDrawStroke.swift in Sources */,
-				220070731F5FF22000094731 /* DrawCanvas.swift in Sources */,
+				220070731F5FF22000094731 /* DrawCanvasView.swift in Sources */,
 				220070721F5FF21F00094731 /* AppDelegate.swift in Sources */,
 				2229C70F1F605659009682A7 /* DrawViewController.swift in Sources */,
 				220070741F5FF22200094731 /* DrawStroke.swift in Sources */,
+				2229C7111F606259009682A7 /* UIColor+HexString.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
