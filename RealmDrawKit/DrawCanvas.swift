@@ -43,7 +43,6 @@ class DrawCanvasView: UIView {
         let context = UIGraphicsGetCurrentContext()!
         context.setLineCap(.round)
 
-        // TODO: Intelligently only update the strokes that need updating
         for stroke in strokes {
             guard stroke.isDirty else { continue }
 
@@ -88,7 +87,7 @@ class DrawCanvasView: UIView {
         let dy = point.y - previousPoint.y
 
         // The touch didn't move far enough to be worth capturing this new sample
-        guard (dx * dx + dy * dy) > CGFloat(DrawCanvas.sampleDistanceSquared) else { return }
+        guard (dx * dx + dy * dy) > CGFloat(DrawCanvasView.sampleDistanceSquared) else { return }
 
         // Add the new point to the stroke
         activeStroke.addPoint(point)

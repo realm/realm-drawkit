@@ -10,12 +10,12 @@
 		2200706E1F5FF20400094731 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 222A07331F5FF123003B9051 /* LaunchScreen.storyboard */; };
 		2200706F1F5FF20400094731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 222A07351F5FF123003B9051 /* Main.storyboard */; };
 		220070701F5FF20600094731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 222A07321F5FF123003B9051 /* Assets.xcassets */; };
-		220070711F5FF21D00094731 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A07381F5FF123003B9051 /* ViewController.swift */; };
 		220070721F5FF21F00094731 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A07311F5FF123003B9051 /* AppDelegate.swift */; };
 		220070731F5FF22000094731 /* DrawCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A072E1F5FF123003B9051 /* DrawCanvas.swift */; };
 		220070741F5FF22200094731 /* DrawStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A072F1F5FF123003B9051 /* DrawStroke.swift */; };
 		2229C70B1F6027CD009682A7 /* RealmDrawStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2229C70A1F6027CD009682A7 /* RealmDrawStroke.swift */; };
 		2229C70D1F602B37009682A7 /* RealmDrawPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2229C70C1F602B37009682A7 /* RealmDrawPoint.swift */; };
+		2229C70F1F605659009682A7 /* DrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2229C70E1F605659009682A7 /* DrawViewController.swift */; };
 		3FC1A61F68F9100F77049D1A /* Pods_RealmDrawKitExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7916E403899BDD344F34F9F /* Pods_RealmDrawKitExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +23,7 @@
 		2229C7091F602704009682A7 /* RealmDrawCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDrawCanvas.swift; sourceTree = "<group>"; };
 		2229C70A1F6027CD009682A7 /* RealmDrawStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDrawStroke.swift; sourceTree = "<group>"; };
 		2229C70C1F602B37009682A7 /* RealmDrawPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDrawPoint.swift; sourceTree = "<group>"; };
+		2229C70E1F605659009682A7 /* DrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawViewController.swift; sourceTree = "<group>"; };
 		222A072E1F5FF123003B9051 /* DrawCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawCanvas.swift; sourceTree = "<group>"; };
 		222A072F1F5FF123003B9051 /* DrawStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawStroke.swift; sourceTree = "<group>"; };
 		222A07311F5FF123003B9051 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -30,7 +31,6 @@
 		222A07341F5FF123003B9051 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		222A07361F5FF123003B9051 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		222A07371F5FF123003B9051 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		222A07381F5FF123003B9051 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		22A4193E1F5EB4F8006F179E /* RealmDrawKitExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmDrawKitExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE370852AC3AB7BF6D0CB9B5 /* Pods-RealmDrawKitExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmDrawKitExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RealmDrawKitExample/Pods-RealmDrawKitExample.debug.xcconfig"; sourceTree = "<group>"; };
 		B7916E403899BDD344F34F9F /* Pods_RealmDrawKitExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RealmDrawKitExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +65,7 @@
 				2229C7081F602704009682A7 /* RealmModels */,
 				222A072E1F5FF123003B9051 /* DrawCanvas.swift */,
 				222A072F1F5FF123003B9051 /* DrawStroke.swift */,
+				2229C70E1F605659009682A7 /* DrawViewController.swift */,
 			);
 			path = RealmDrawKit;
 			sourceTree = "<group>";
@@ -77,7 +78,6 @@
 				222A07331F5FF123003B9051 /* LaunchScreen.storyboard */,
 				222A07351F5FF123003B9051 /* Main.storyboard */,
 				222A07371F5FF123003B9051 /* Info.plist */,
-				222A07381F5FF123003B9051 /* ViewController.swift */,
 			);
 			path = RealmDrawKitExample;
 			sourceTree = "<group>";
@@ -253,8 +253,8 @@
 				2229C70B1F6027CD009682A7 /* RealmDrawStroke.swift in Sources */,
 				220070731F5FF22000094731 /* DrawCanvas.swift in Sources */,
 				220070721F5FF21F00094731 /* AppDelegate.swift in Sources */,
+				2229C70F1F605659009682A7 /* DrawViewController.swift in Sources */,
 				220070741F5FF22200094731 /* DrawStroke.swift in Sources */,
-				220070711F5FF21D00094731 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
