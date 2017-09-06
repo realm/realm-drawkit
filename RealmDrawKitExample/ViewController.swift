@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let canvasView = RealmDrawCanvas(frame: view.bounds)
+        let canvasView = DrawCanvasView(frame: view.bounds)
         canvasView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(canvasView)
     }

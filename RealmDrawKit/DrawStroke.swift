@@ -15,7 +15,7 @@ extension CGPoint {
     }
 }
 
-class RealmDrawStroke {
+class DrawStroke {
     // The color of this stroke. Black by default
     var color: UIColor = .black
 

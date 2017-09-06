@@ -9,7 +9,7 @@
 import UIKit
 import QuartzCore
 
-class RealmDrawCanvas: UIView {
+class DrawCanvasView: UIView {
 
     public var strokeColor: UIColor = .black
     public var strokeWidth = 2.0
@@ -19,8 +19,8 @@ class RealmDrawCanvas: UIView {
     static let sampleDistanceSquared = sampleDistance * sampleDistance
 
     // Internal state for all of the strokes this canvas has
-    private var strokes = [RealmDrawStroke]()
-    private var activeStroke: RealmDrawStroke?
+    private var strokes = [DrawStroke]()
+    private var activeStroke: DrawStroke?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,7 +58,7 @@ class RealmDrawCanvas: UIView {
 
     internal override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // Create a new stroke record
-        let newStroke = RealmDrawStroke()
+        let newStroke = DrawStroke()
         newStroke.color = strokeColor
         newStroke.width = strokeWidth
         strokes.append(newStroke)
@@ -88,7 +88,7 @@ class RealmDrawCanvas: UIView {
         let dy = point.y - previousPoint.y
 
         // The touch didn't move far enough to be worth capturing this new sample
-        guard (dx * dx + dy * dy) > CGFloat(RealmDrawCanvas.sampleDistanceSquared) else { return }
+        guard (dx * dx + dy * dy) > CGFloat(DrawCanvas.sampleDistanceSquared) else { return }
 
         // Add the new point to the stroke
         activeStroke.addPoint(point)
