@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class RealmDrawStroke: Object {
+open class RealmDrawStroke: Object {
     @objc dynamic var width = 2.0
     @objc dynamic var colorString = "0x000000"
     let points = List<RealmDrawPoint>()

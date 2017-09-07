@@ -20,7 +20,7 @@ public protocol DrawCanvasViewDataSource {
     func numberOfStrokesInDrawCanvasView(_ drawCanvasView: DrawCanvasView) -> Int
     func drawCanvasView(_ canvasView: DrawCanvasView, colorOfStrokeAt index: Int) -> UIColor
     func drawCanvasView(_ canvasView: DrawCanvasView, widthOfStrokeAt index: Int) -> Double
-    func drawCanvasView(_ canvasView: DrawCanvasView, numberOfPointsInStroke: Int) -> Int
+    func drawCanvasView(_ canvasView: DrawCanvasView, numberOfPointsInStroke strokeIndex: Int) -> Int
     func drawCanvasView(_ canvasView: DrawCanvasView, pointInStrokeAt strokeIndex: Int, at pointIndex: Int) -> CGPoint
 }
 
@@ -53,8 +53,44 @@ open class DrawCanvasView: UIView {
 
     private func setUp() {
         backgroundColor = .white
-        contentMode = .redraw
     }
+
+    open override func didMoveToSuperview() {
+        guard superview != nil else { return }
+        reloadCanvasView()
+    }
+
+    // MARK: - Initial Setup -
+    public func reloadCanvasView() {
+        guard let dataSource = dataSource else { return }
+
+        // Remove all existing strokes
+        strokes.removeAll()
+
+        let numberOfStrokes = dataSource.numberOfStrokesInDrawCanvasView(self)
+        guard numberOfStrokes > 0 else { return }
+
+        for index in 0..<numberOfStrokes {
+            let newStroke = DrawStroke()
+            newStroke.color = dataSource.drawCanvasView(self, colorOfStrokeAt: index)
+            newStroke.width = dataSource.drawCanvasView(self, widthOfStrokeAt: index)
+            strokes.append(newStroke)
+
+            let numberOfPoints = dataSource.drawCanvasView(self, numberOfPointsInStroke: index)
+            guard numberOfPoints > 0 else { continue }
+
+            for pointIndex in 0..<numberOfPoints {
+                let point = dataSource.drawCanvasView(self, pointInStrokeAt: index, at: pointIndex)
+                newStroke.addPoint(point)
+            }
+
+            newStroke.isDirty = true
+        }
+
+        self.setNeedsDisplay()
+    }
+
+    // MARK: - Graphics Interaction -
 
     open override func draw(_ rect: CGRect) {
         backgroundColor!.set()
@@ -74,6 +110,8 @@ open class DrawCanvasView: UIView {
             context.restoreGState()
         }
     }
+
+    // MARK: - Touch Interaction -
 
     open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // Create a new stroke record

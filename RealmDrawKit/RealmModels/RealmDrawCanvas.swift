@@ -9,6 +9,6 @@
 import Foundation
 import RealmSwift
 
-class RealmDrawCanvas: Object {
+open class RealmDrawCanvas: Object {
     let strokes = List<RealmDrawStroke>()
 }
