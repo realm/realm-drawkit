@@ -42,6 +42,16 @@ open class DrawCanvasView: UIView {
     private var activeStroke: DrawStroke?
     private var activeStrokeIndex: Int = -1
 
+    // External state tracking
+    public var numberOfStrokes: Int {
+        return strokes.count
+    }
+
+    public func numberOfPoints(in strokeIndex: Int) -> Int {
+        guard strokeIndex < strokes.count else { return 0 }
+        return strokes[strokeIndex].points.count
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUp()
@@ -88,6 +98,43 @@ open class DrawCanvasView: UIView {
         }
 
         self.setNeedsDisplay()
+    }
+
+    // MARK: - Fine-grained Configuration -
+    public func insertNewStroke(at index: Int) {
+        guard let dataSource = dataSource else { return }
+
+        let newStroke = DrawStroke()
+        newStroke.color = dataSource.drawCanvasView(self, colorOfStrokeAt: index)
+        newStroke.width = dataSource.drawCanvasView(self, widthOfStrokeAt: index)
+        if index >= strokes.count {
+            strokes.append(newStroke)
+        }
+        else {
+            strokes.insert(newStroke, at: index)
+        }
+
+        let numberOfPoints = dataSource.drawCanvasView(self, numberOfPointsInStroke: index)
+        guard numberOfPoints > 0 else { return }
+
+        for pointIndex in 0..<numberOfPoints {
+            let point = dataSource.drawCanvasView(self, pointInStrokeAt: index, at: pointIndex)
+            newStroke.addPoint(point)
+        }
+
+        newStroke.isDirty = true
+        self.setNeedsDisplay(newStroke.dirtyFrame!)
+    }
+
+    public func insertNewPoint(in strokeIndex: Int, at pointIndex: Int) {
+        guard let dataSource = dataSource else { return }
+
+        let stroke = strokes[strokeIndex]
+        let point = dataSource.drawCanvasView(self, pointInStrokeAt: strokeIndex, at: pointIndex)
+        stroke.addPoint(point)
+
+        stroke.isDirty = true
+        self.setNeedsDisplay(stroke.dirtyFrame!)
     }
 
     // MARK: - Graphics Interaction -
