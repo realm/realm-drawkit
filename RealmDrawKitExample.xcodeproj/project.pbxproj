@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2200706E1F5FF20400094731 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 222A07331F5FF123003B9051 /* LaunchScreen.storyboard */; };
-		2200706F1F5FF20400094731 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 222A07351F5FF123003B9051 /* Main.storyboard */; };
 		220070701F5FF20600094731 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 222A07321F5FF123003B9051 /* Assets.xcassets */; };
 		220070721F5FF21F00094731 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A07311F5FF123003B9051 /* AppDelegate.swift */; };
 		220070731F5FF22000094731 /* DrawCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A072E1F5FF123003B9051 /* DrawCanvasView.swift */; };
@@ -32,7 +31,6 @@
 		222A07311F5FF123003B9051 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		222A07321F5FF123003B9051 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		222A07341F5FF123003B9051 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		222A07361F5FF123003B9051 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		222A07371F5FF123003B9051 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22A4193E1F5EB4F8006F179E /* RealmDrawKitExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmDrawKitExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE370852AC3AB7BF6D0CB9B5 /* Pods-RealmDrawKitExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmDrawKitExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RealmDrawKitExample/Pods-RealmDrawKitExample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -80,7 +78,6 @@
 				222A07311F5FF123003B9051 /* AppDelegate.swift */,
 				222A07321F5FF123003B9051 /* Assets.xcassets */,
 				222A07331F5FF123003B9051 /* LaunchScreen.storyboard */,
-				222A07351F5FF123003B9051 /* Main.storyboard */,
 				222A07371F5FF123003B9051 /* Info.plist */,
 			);
 			path = RealmDrawKitExample;
@@ -185,7 +182,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2200706E1F5FF20400094731 /* LaunchScreen.storyboard in Resources */,
-				2200706F1F5FF20400094731 /* Main.storyboard in Resources */,
 				220070701F5FF20600094731 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,12 +215,16 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RealmDrawKitExample/Pods-RealmDrawKitExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmLoginKit/RealmLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/TORoundedTableView/TORoundedTableView.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TORoundedTableView.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -273,14 +273,6 @@
 				222A07341F5FF123003B9051 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		222A07351F5FF123003B9051 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				222A07361F5FF123003B9051 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

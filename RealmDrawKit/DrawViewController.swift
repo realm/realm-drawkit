@@ -15,32 +15,69 @@ class DrawViewController: UIViewController, DrawCanvasViewDelegate, DrawCanvasVi
                                    qos: .userInitiated,
                                    attributes: [], autoreleaseFrequency: .inherit, target: nil)
 
-    var realmCanvas: RealmDrawCanvas?
+    var realmCanvas: RealmDrawCanvas? {
+        didSet { setUpNewCanvas() }
+    }
+
+    var notificationToken: NotificationToken?
+
+    var canvasView: DrawCanvasView {
+        return self.view as! DrawCanvasView
+    }
 
     override func loadView() {
         let canvasView = DrawCanvasView(frame: .zero)
         canvasView.delegate = self
         canvasView.dataSource = self
+        canvasView.isUserInteractionEnabled = false
         self.view = canvasView
+    }
+
+    private func setUpNewCanvas() {
+        self.notificationToken = self.realmCanvas?.strokes.addNotificationBlock { changes in
+            self.updateFromRealm(with: changes)
+        }
+
+        self.canvasView.isUserInteractionEnabled = true
+        self.canvasView.reloadCanvasView()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Create canvas for first time
-        let realm = try! Realm()
-        realmCanvas = realm.objects(RealmDrawCanvas.self).first
-        if realmCanvas == nil {
-            realmCanvas = RealmDrawCanvas()
-            try! realm.write {
-                realm.add(realmCanvas!)
-            }
-        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    // MARK: - Realm Notifications -
+    private func updateFromRealm(with changes: RealmCollectionChange<List<RealmDrawStroke>>) {
+        switch changes {
+        case .update(_, _, let insertions, let modifications):
+            // Insertions indicates a new stroke was added
+            if insertions.count > 0 && canvasView.numberOfStrokes < realmCanvas!.strokes.count { // A new stroke was added
+                for strokeIndex in insertions {
+                    canvasView.insertNewStroke(at: strokeIndex)
+                }
+            }
+
+            // Modifications only indicate a stroke was 'changed'. So we need to check each stroke and ensure
+            // the number of points in each one is unchanged
+            if modifications.count > 0 {
+                for strokeIndex in modifications {
+                    let numberOfCanvasPoints = canvasView.numberOfPoints(in: strokeIndex)
+                    let pointDelta = realmCanvas!.strokes[strokeIndex].points.count - numberOfCanvasPoints
+                    if pointDelta <= 0 { continue }
+
+                    for pointIndex in numberOfCanvasPoints..<(numberOfCanvasPoints + pointDelta) {
+                        canvasView.insertNewPoint(in: strokeIndex, at: pointIndex)
+                    }
+                }
+            }
+
+        default: break
+        }
     }
 
     // MARK: - Canvas View Delegate -
@@ -92,6 +129,7 @@ class DrawViewController: UIViewController, DrawCanvasViewDelegate, DrawCanvasVi
     // MARK: Persistent Data Source
 
     func numberOfStrokesInDrawCanvasView(_ drawCanvasView: DrawCanvasView) -> Int {
+        guard realmCanvas != nil else { return 0 }
         return realmCanvas!.strokes.count
     }
     func drawCanvasView(_ canvasView: DrawCanvasView, colorOfStrokeAt index: Int) -> UIColor {

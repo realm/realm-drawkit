@@ -7,5 +7,6 @@ target 'RealmDrawKitExample' do
 
   # Pods for RealmDrawKitExample
   pod 'RealmSwift'
+  pod 'RealmLoginKit'
 
 end
