@@ -88,7 +88,7 @@ class DrawViewController: UIViewController, DrawCanvasViewDelegate, DrawCanvasVi
     // MARK: - Realm Notifications -
     private func updateFromRealm(with changes: RealmCollectionChange<List<RealmDrawStroke>>) {
         switch changes {
-        case .update(_, _, let insertions, let modifications):
+        case .update(_, let deletions, let insertions, let modifications):
             // Insertions indicates a new stroke was added
             if insertions.count > 0 && canvasView.numberOfStrokes < realmCanvas!.strokes.count { // A new stroke was added
                 for strokeIndex in insertions {
@@ -108,6 +108,10 @@ class DrawViewController: UIViewController, DrawCanvasViewDelegate, DrawCanvasVi
                         canvasView.insertNewPoint(in: strokeIndex, at: pointIndex)
                     }
                 }
+            }
+
+            if deletions.count > 0 {
+                canvasView.reloadCanvasView()
             }
 
         default: break
