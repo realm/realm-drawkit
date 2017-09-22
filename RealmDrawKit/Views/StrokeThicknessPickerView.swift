@@ -15,6 +15,9 @@ open class StrokeThicknessPickerView: UIView {
         didSet { self.setNeedsLayout() }
     }
 
+    // Handler for when the user picks a new stroke size
+    public var strokeChangedHandler: ((Int) -> (Void))?
+
     // The distance between the label and stroke view
     var itemPadding = 2.0
 
@@ -22,7 +25,7 @@ open class StrokeThicknessPickerView: UIView {
     var itemSpacing = 22.0
 
     // An array of values denoting the stroke choices
-    var items: [String]? {
+    public private(set) var items: [String]? {
         didSet {
             resetAllViews()
             setUpViews()
@@ -146,6 +149,8 @@ open class StrokeThicknessPickerView: UIView {
         if let strokeViews = self.strokeViews {
             strokeViews[touchIndex].alpha = 0.4
         }
+
+        self.strokeChangedHandler?(self.selectedIndex)
     }
 
     open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

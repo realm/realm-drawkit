@@ -14,7 +14,10 @@ class ColorPickerView: UIView {
         didSet { self.setNeedsLayout() }
     }
 
-    var colors: [UIColor]?
+    public var colorSelectedHandler: ((Int) -> (Void))?
+
+    public private(set) var colors: [UIColor]?
+
     var circleSize = CGSize(width: 32, height: 32) {
         didSet { }
     }
@@ -109,6 +112,8 @@ class ColorPickerView: UIView {
         selectedIndex = verticalPosition + (numberPerColumn * horizontalPosition)
 
         imageViews![selectedIndex].alpha = 0.4
+
+        self.colorSelectedHandler?(selectedIndex)
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

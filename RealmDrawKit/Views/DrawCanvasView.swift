@@ -27,7 +27,7 @@ public protocol DrawCanvasViewDataSource {
 open class DrawCanvasView: UIView {
 
     // Properties that will control the next stroke to be drawn
-    public var strokeColor: UIColor = .red
+    public var strokeColor: UIColor = .black
     public var strokeWidth = 2.0
 
     public var delegate: DrawCanvasViewDelegate?
@@ -77,6 +77,9 @@ open class DrawCanvasView: UIView {
         // Remove all existing strokes
         strokes.removeAll()
 
+        // Set the rendering canvas to reset
+        self.setNeedsDisplay()
+
         let numberOfStrokes = dataSource.numberOfStrokesInDrawCanvasView(self)
         guard numberOfStrokes > 0 else { return }
 
@@ -96,8 +99,6 @@ open class DrawCanvasView: UIView {
 
             newStroke.isDirty = true
         }
-
-        self.setNeedsDisplay()
     }
 
     // MARK: - Fine-grained Configuration -

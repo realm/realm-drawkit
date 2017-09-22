@@ -16,7 +16,7 @@ open class DrawStrokeThicknessView: UIView {
     }
 
     // Thickness of the the stroke
-    public var strokeThickness = 10.0 {
+    public var strokeThickness = 2.0 {
         didSet {
             shapeLayer.lineWidth = CGFloat(strokeThickness)
         }

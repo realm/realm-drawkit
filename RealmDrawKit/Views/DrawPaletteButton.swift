@@ -16,7 +16,7 @@ open class DrawPaletteButton: UIControl {
     public var strokeIconTappedHandler: (() -> ())?
 
     public init() {
-        super.init(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 60, height: 36)))
+        super.init(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 40, height: 40)))
 
         backgroundView.image = UIImage.paletteBackgroundImage(cornerRadius: 8)
         backgroundView.autoresizingMask = [.flexibleWidth, .flexibleHeight]

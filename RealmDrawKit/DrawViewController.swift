@@ -50,6 +50,7 @@ class DrawViewController: UIViewController, DrawCanvasViewDelegate, DrawCanvasVi
         // Add swatches button
         swatchesButton = DrawPaletteButton()
         swatchesButton?.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin];
+        swatchesButton?.strokeView.strokeThickness = 2.0
         swatchesButton?.strokeIconTappedHandler = {
             self.presentSettingsPanel()
         }
@@ -63,10 +64,20 @@ class DrawViewController: UIViewController, DrawCanvasViewDelegate, DrawCanvasVi
 
     private func presentSettingsPanel() {
         let settingsViewController = PaletteSettingsViewController()
+        settingsViewController.strokeWidth = canvasView.strokeWidth
+        settingsViewController.strokeColor = canvasView.strokeColor
         settingsViewController.popoverPresentationController?.sourceRect = swatchesButton!.frame
         settingsViewController.popoverPresentationController?.sourceView = self.view
         settingsViewController.popoverPresentationController?.permittedArrowDirections = [.down]
         present(settingsViewController, animated: true, completion: nil)
+
+        settingsViewController.settingsChangedHandler = { strokeWidth, strokeColor in
+            self.swatchesButton?.strokeView.strokeThickness = strokeWidth
+            self.swatchesButton?.strokeView.strokeColor = strokeColor
+
+            self.canvasView.strokeWidth = strokeWidth
+            self.canvasView.strokeColor = strokeColor
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -168,5 +179,38 @@ class DrawViewController: UIViewController, DrawCanvasViewDelegate, DrawCanvasVi
 
     func drawCanvasView(_ canvasView: DrawCanvasView, pointInStrokeAt strokeIndex: Int, at pointIndex: Int) -> CGPoint {
         return realmCanvas!.strokes[strokeIndex].points[pointIndex].point
+    }
+
+    // MARK: Clear Canvas
+
+    open override var canBecomeFirstResponder: Bool {
+        return true
+    }
+
+    open override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        let alertController = UIAlertController(title: "Clear Canvas?", message: "Erase all strokes and start again from scratch?", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "Clear Canvas", style: .default) { (action) in
+            self.clearCanvas()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+
+        self.present(alertController, animated: true, completion: nil)
+    }
+
+    private func clearCanvas() {
+        guard let realmCanvas = realmCanvas else { return }
+        guard let realm = realmCanvas.realm else { return }
+
+        try! realm.write {
+            let strokes = realmCanvas.strokes
+            for stroke in strokes {
+                realm.delete(stroke.points)
+                realm.delete(stroke)
+            }
+        }
+
+        canvasView.reloadCanvasView()
     }
 }
