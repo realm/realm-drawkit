@@ -27,7 +27,7 @@ public protocol DrawCanvasViewDataSource {
 open class DrawCanvasView: UIView {
 
     // Properties that will control the next stroke to be drawn
-    public var strokeColor: UIColor = .black
+    public var strokeColor: UIColor = .red
     public var strokeWidth = 2.0
 
     public var delegate: DrawCanvasViewDelegate?

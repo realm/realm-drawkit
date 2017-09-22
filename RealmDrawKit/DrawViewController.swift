@@ -25,8 +25,10 @@ class DrawViewController: UIViewController, DrawCanvasViewDelegate, DrawCanvasVi
         return self.view as! DrawCanvasView
     }
 
+    var swatchesButton: DrawPaletteButton?
+
     override func loadView() {
-        let canvasView = DrawCanvasView(frame: .zero)
+        let canvasView = DrawCanvasView(frame: UIScreen.main.bounds)
         canvasView.delegate = self
         canvasView.dataSource = self
         canvasView.isUserInteractionEnabled = false
@@ -44,6 +46,27 @@ class DrawViewController: UIViewController, DrawCanvasViewDelegate, DrawCanvasVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Add swatches button
+        swatchesButton = DrawPaletteButton()
+        swatchesButton?.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin];
+        swatchesButton?.strokeIconTappedHandler = {
+            self.presentSettingsPanel()
+        }
+        self.view.addSubview(swatchesButton!)
+
+        var frame = swatchesButton!.frame
+        frame.origin.x = self.view.frame.size.width - (frame.size.width + 30)
+        frame.origin.y = self.view.frame.size.height - (frame.size.height + 30)
+        swatchesButton!.frame = frame
+    }
+
+    private func presentSettingsPanel() {
+        let settingsViewController = PaletteSettingsViewController()
+        settingsViewController.popoverPresentationController?.sourceRect = swatchesButton!.frame
+        settingsViewController.popoverPresentationController?.sourceView = self.view
+        settingsViewController.popoverPresentationController?.permittedArrowDirections = [.down]
+        present(settingsViewController, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
