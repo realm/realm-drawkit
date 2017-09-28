@@ -17,7 +17,6 @@ Realm DrawKit has been designed to be integrated into apps that would benefit fr
 
 # Versions & Requirements
 
-### [iOS](https://github.com/realm-demos/realm-loginkit/tree/master/RealmLoginKit%20Apple/) 
 * Xcode 9.0 and up
 * iOS 9.0 and up
 
