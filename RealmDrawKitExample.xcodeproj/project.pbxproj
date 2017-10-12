@@ -152,8 +152,7 @@
 			children = (
 				22B910371F73AF7100B48B10 /* PaletteSettingsViewController.swift */,
 			);
-			name = Controllers;
-			path = "../../../Downloads/realm-drawkit-original-master/RealmDrawKit/Controllers";
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		B8AF132A2A405F7385DB83FE /* Pods */ = {
