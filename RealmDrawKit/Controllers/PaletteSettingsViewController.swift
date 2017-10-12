@@ -104,6 +104,22 @@ class PaletteSettingsViewController: UIViewController, UIPopoverPresentationCont
         colorPickerView.frame.size.height = (view.frame.size.height - colorPickerView.frame.minY) - contentInset.width
         colorPickerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(colorPickerView)
+
+        strokePickerView.strokeChangedHandler = { [weak self] index in
+            guard let `self` = self else { return }
+            if let items = self.strokePickerView.items {
+                self.strokeWidth = Double(items[index])!
+            }
+            self.settingsChangedHandler?(self.strokeWidth, self.strokeColor)
+        }
+
+        colorPickerView.colorSelectedHandler = { [weak self] index in
+            guard let `self` = self else { return }
+            if let items = self.colorPickerView.colors {
+                self.strokeColor = items[index]
+            }
+            self.settingsChangedHandler?(self.strokeWidth, self.strokeColor)
+        }
     }
 
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
