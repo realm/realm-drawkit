@@ -42,8 +42,20 @@ class PaletteSettingsViewController: UIViewController, UIPopoverPresentationCont
         UIColor(hexString: "39477f"),
     ])
 
-    public var strokeWidth = 2.0
-    public var strokeColor: UIColor = .black
+    public var strokeWidth = 2.0 {
+        didSet {
+            if let index = strokePickerView.items?.index(of: String(Int(strokeWidth))) {
+                strokePickerView.selectedIndex = index
+            }
+        }
+    }
+    public var strokeColor: UIColor = .black {
+        didSet {
+            if let index = colorPickerView.colors?.index(of: strokeColor) {
+                colorPickerView.selectedIndex = index
+            }
+        }
+    }
     public var settingsChangedHandler: ((Double, UIColor) -> (Void))?
 
     private let contentInset = CGSize(width: 20.0, height: 15.0)
