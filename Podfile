@@ -6,6 +6,6 @@ target 'RealmDrawKitExample' do
   use_frameworks!
 
   # Pods for RealmDrawKitExample
-  pod 'RealmSwift'
+  pod 'RealmSwift', '3.0.0-rc.1'
   pod 'RealmLoginKit'
 end

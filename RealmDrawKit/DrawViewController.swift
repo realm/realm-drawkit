@@ -50,7 +50,7 @@ class DrawViewController: UIViewController, DrawCanvasViewDelegate, DrawCanvasVi
     }
 
     private func setUpNewCanvas() {
-        self.notificationToken = self.realmCanvas?.strokes.addNotificationBlock { changes in
+        self.notificationToken = self.realmCanvas?.strokes.observe { changes in
             self.updateFromRealm(with: changes)
         }
 
