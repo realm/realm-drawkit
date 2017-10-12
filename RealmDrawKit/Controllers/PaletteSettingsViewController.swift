@@ -40,7 +40,11 @@ class PaletteSettingsViewController: UIViewController, UIPopoverPresentationCont
         UIColor(hexString: "9a50a5"),
         UIColor(hexString: "59569e"),
         UIColor(hexString: "39477f"),
-])
+    ])
+
+    public var strokeWidth = 2.0
+    public var strokeColor: UIColor = .black
+    public var settingsChangedHandler: ((Double, UIColor) -> (Void))?
 
     private let contentInset = CGSize(width: 20.0, height: 15.0)
 
@@ -56,7 +60,7 @@ class PaletteSettingsViewController: UIViewController, UIPopoverPresentationCont
         super.viewDidLoad()
 
         // Set up label views
-        let font = UIFont.systemFont(ofSize: 12.0, weight: UIFontWeightBold)
+        let font = UIFont.systemFont(ofSize: 12.0, weight: .bold)
         thicknessLabel.font = font
         colorLabel.font = font
 
